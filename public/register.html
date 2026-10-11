@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="centered">
+  <div class="card login-card">
+    <h1>Create Account</h1>
+    <p class="muted">Register a new user for the system</p>
+
+    <form id="registerForm" autocomplete="off">
+      <label>
+        Full Name
+        <input type="text" id="name" placeholder="Juan Dela Cruz" required />
+      </label>
+      <label>
+        Email
+        <input type="email" id="email" placeholder="you@lab.com" required />
+      </label>
+      <label>
+        Password
+        <input type="password" id="password" placeholder="Minimum 6 characters" required />
+      </label>
+      <label>
+        Role
+        <select id="role">
+          <option value="user">User</option>
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label>
+      <button type="submit" class="btn primary">Create Account</button>
+    </form>
+
+    <p id="msg" class="msg"></p>
+
+    <div class="hint">
+      <div>Already have an account? <a href="/login.html">Login here</a></div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+      msg.className = 'msg';
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value;
+
+      if (!name || !email || !password) {
+        msg.textContent = 'Please fill in all fields.';
+        msg.classList.add('error');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        msg.textContent = 'Please enter a valid email address.';
+        msg.classList.add('error');
+        return;
+      }
+
+      if (password.length < 6) {
+        msg.textContent = 'Password must be at least 6 characters.';
+        msg.classList.add('error');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, role })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.textContent = data.error || 'Unable to create account.';
+          msg.classList.add('error');
+          return;
+        }
+
+        msg.textContent = 'Account created successfully! Redirecting to login...';
+        msg.classList.add('success');
+        setTimeout(() => {
+          window.location.href = '/login.html';
+        }, 1200);
+      } catch (err) {
+        msg.textContent = 'Cannot reach the server. Is it running?';
+        msg.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>

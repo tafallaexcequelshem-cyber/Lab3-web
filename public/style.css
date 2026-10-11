@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #1e293b;
+}
+
+.centered {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.login-card {
+  width: min(100%, 420px);
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  margin-top: 0.45rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.btn.primary {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+}
+
+.btn.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn.danger:hover {
+  background: #dc2626;
+}
+
+.msg {
+  min-height: 1.25rem;
+  margin-top: 0.8rem;
+  font-weight: 600;
+}
+
+.msg.error {
+  color: #b91c1c;
+}
+
+.msg.success {
+  color: #15803d;
+}
+
+.muted {
+  color: #475569;
+}
+
+.hint {
+  margin-top: 1rem;
+  line-height: 1.6;
+  color: #334155;
+  font-size: 0.94rem;
+}
+
+code {
+  background: #eef2ff;
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+}
+
+select {
+  width: 100%;
+  margin-top: 0.45rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  background: #fff;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.8rem 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.badge.admin {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.staff {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge.user {
+  background: #dcfce7;
+  color: #166534;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
